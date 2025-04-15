@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"context"
+	"vocabulary/internal/controller/account"
 	"vocabulary/internal/controller/users"
+	"vocabulary/internal/controller/words"
+	"vocabulary/internal/logic/middleware"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -22,6 +25,13 @@ var (
                     group.Bind(
                         users.NewV1(),
                     )
+                    group.Group("/", func(group *ghttp.RouterGroup){
+                        group.Middleware(middleware.Auth)
+                        group.Bind(
+                            account.NewV1(),
+                            words.NewV1(),
+                        )
+                    })
                 })
             })
             s.Run()
