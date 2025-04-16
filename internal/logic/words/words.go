@@ -69,49 +69,33 @@ type UpdateInput struct {
 	ProficiencyLevel   v1.ProficiencyLevel	
 }
 
-func (w *Words) Update(ctx context.Context, id uint, in UpdateInput) (err error) {
-	var cls = dao.Words.Columns()
-	var count int
-	count, err = dao.Words.Ctx(ctx).
-	Where(cls.Uid, in.Uid).
-	Where(cls.Word, in.Word).
-	WhereNot(cls.Id, id).
-	Count()
 
-	if err!= nil {
+func (w *Words) Update(ctx context.Context, id uint, in UpdateInput) error {
+	var cls = dao.Words.Columns()
+
+	count, err := dao.Words.Ctx(ctx).
+		Where(cls.Uid, in.Uid).
+		Where(cls.Word, in.Word).
+		WhereNot(cls.Id, id).
+		Count()
+	if err != nil {
 		return err
 	}
-
 	if count > 0 {
 		return gerror.New("单词已存在")
 	}
 
-	result, err := dao.Words.Ctx(ctx).Data(do.Words{
+	_, err = dao.Words.Ctx(ctx).Data(do.Words{
 		Word:               in.Word,
 		Definition:         in.Definition,
 		ExampleSentence:    in.ExampleSentence,
 		ChineseTranslation: in.ChineseTranslation,
 		Pronunciation:      in.Pronunciation,
 		ProficiencyLevel:   in.ProficiencyLevel,
-	}).
-	Where(cls.Id, id).
-	Where(cls.Uid, in.Uid).
-	Update()
-
+	}).Where(cls.Id, id).Where(cls.Uid, in.Uid).Update()
 	if err != nil {
 		return err
 	}
-	
-	// 检查影响的行数
-	affected, err := result.RowsAffected()
-	if err != nil {
-		return err
-	}
-	
-	if affected == 0 {
-		return gerror.New("未找到要更新的单词或无变化")
-	}
-	
 	return nil
 }
 
