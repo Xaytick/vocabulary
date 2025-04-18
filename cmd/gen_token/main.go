@@ -34,6 +34,4 @@ func main() {
 	fmt.Println("生成的token:")
 	fmt.Println(tokenString)
 	
-	fmt.Println("\n使用curl测试:")
-	fmt.Printf("curl -H \"Authorization: Bearer %s\" http://127.0.0.1:8000/v1/account/info\n", tokenString)
 }

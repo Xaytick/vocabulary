@@ -141,8 +141,8 @@ func(w *Words) List(ctx context.Context, in ListInput) (list []entity.Words, tot
 
 func (w *Words) Detail(ctx context.Context, uid, id uint) (word *entity.Words, err error) {
     var (
-		 cls = dao.Words.Columns()
-		 orm = dao.Words.Ctx(ctx)
+		cls = dao.Words.Columns()
+		orm = dao.Words.Ctx(ctx)
 	)	
 	orm = orm.Where(cls.Id, id)
 	if uid > 0{
@@ -154,8 +154,8 @@ func (w *Words) Detail(ctx context.Context, uid, id uint) (word *entity.Words, e
 
 func (w *Words) Delete(ctx context.Context, uid, id uint) (err error) {
 	var (
-		 cls = dao.Words.Columns()
-		 orm = dao.Words.Ctx(ctx)
+		cls = dao.Words.Columns()
+		orm = dao.Words.Ctx(ctx)
 	)
 
 	orm = orm.Where(cls.Id, id)
