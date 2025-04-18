@@ -7,6 +7,7 @@ import (
 	"vocabulary/internal/model/do"
 	"vocabulary/internal/model/entity"
 
+	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
@@ -141,15 +142,22 @@ func(w *Words) List(ctx context.Context, in ListInput) (list []entity.Words, tot
 
 func (w *Words) Detail(ctx context.Context, uid, id uint) (word *entity.Words, err error) {
     var (
-		cls = dao.Words.Columns()
-		orm = dao.Words.Ctx(ctx)
-	)	
-	orm = orm.Where(cls.Id, id)
-	if uid > 0{
-		orm = orm.Where(cls.Uid, uid)
-	}
-	err = orm.Scan(&word)
-	return
+        cls = dao.Words.Columns()
+        orm = dao.Words.Ctx(ctx)
+    )    
+    orm = orm.Where(cls.Id, id)
+    if uid > 0 {
+        orm = orm.Where(cls.Uid, uid)
+    }
+    
+    err = orm.Scan(&word)
+    
+    // 处理记录不存在的情况
+    if err == nil && word == nil {
+        return nil, gerror.NewCode(gcode.CodeNotFound, "单词不存在")
+    }
+    
+    return
 }
 
 func (w *Words) Delete(ctx context.Context, uid, id uint) (err error) {

@@ -1,0 +1,122 @@
+[
+  {
+    "word": "abandon",
+    "definition": "To leave something or someone forever",
+    "example_sentence": "He abandoned his car and walked home.",
+    "chinese_translation": "放弃",
+    "pronunciation": "/əˈbændən/",
+    "proficiency_level": 1
+  },
+  {
+    "word": "brilliant",
+    "definition": "Very bright, intelligent, or successful",
+    "example_sentence": "She had a brilliant idea.",
+    "chinese_translation": "杰出的",
+    "pronunciation": "/ˈbrɪljənt/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "capacity",
+    "definition": "The ability to hold or contain things or people",
+    "example_sentence": "The stadium has a capacity of 50,000 people.",
+    "chinese_translation": "容量",
+    "pronunciation": "/kəˈpæsəti/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "determine",
+    "definition": "To find out or decide something",
+    "example_sentence": "We need to determine the cause of the problem.",
+    "chinese_translation": "确定",
+    "pronunciation": "/dɪˈtɜːmɪn/",
+    "proficiency_level": 1
+  },
+  {
+    "word": "efficient",
+    "definition": "Working well without wasting time or resources",
+    "example_sentence": "The new system is more efficient than the old one.",
+    "chinese_translation": "高效的",
+    "pronunciation": "/ɪˈfɪʃnt/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "fascinating",
+    "definition": "Very interesting or attractive",
+    "example_sentence": "I found the documentary fascinating.",
+    "chinese_translation": "迷人的",
+    "pronunciation": "/ˈfæsɪneɪtɪŋ/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "generate",
+    "definition": "To produce or create something",
+    "example_sentence": "Solar panels generate electricity from sunlight.",
+    "chinese_translation": "产生",
+    "pronunciation": "/ˈdʒenəreɪt/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "hesitate",
+    "definition": "To pause before doing something",
+    "example_sentence": "Don't hesitate to ask for help if you need it.",
+    "chinese_translation": "犹豫",
+    "pronunciation": "/ˈhezɪteɪt/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "impact",
+    "definition": "A strong effect or influence",
+    "example_sentence": "The new law had a significant impact on business.",
+    "chinese_translation": "影响",
+    "pronunciation": "/ˈɪmpækt/",
+    "proficiency_level": 1
+  },
+  {
+    "word": "journey",
+    "definition": "An act of traveling from one place to another",
+    "example_sentence": "The journey to the top of the mountain was difficult.",
+    "chinese_translation": "旅程",
+    "pronunciation": "/ˈdʒɜːni/",
+    "proficiency_level": 1
+  },
+  {
+    "word": "knowledge",
+    "definition": "Information and skills acquired through experience or education",
+    "example_sentence": "He has extensive knowledge of history.",
+    "chinese_translation": "知识",
+    "pronunciation": "/ˈnɒlɪdʒ/",
+    "proficiency_level": 1
+  },
+  {
+    "word": "leadership",
+    "definition": "The action of leading a group of people or an organization",
+    "example_sentence": "Strong leadership is essential for success.",
+    "chinese_translation": "领导力",
+    "pronunciation": "/ˈliːdəʃɪp/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "maintain",
+    "definition": "To keep something in good condition",
+    "example_sentence": "It's important to maintain regular exercise habits.",
+    "chinese_translation": "维持",
+    "pronunciation": "/meɪnˈteɪn/",
+    "proficiency_level": 2
+  },
+  {
+    "word": "negotiate",
+    "definition": "To discuss something to reach an agreement",
+    "example_sentence": "They will negotiate the terms of the contract.",
+    "chinese_translation": "谈判",
+    "pronunciation": "/nɪˈɡəʊʃieɪt/",
+    "proficiency_level": 3
+  },
+  {
+    "word": "opportunity",
+    "definition": "A chance for progress or advancement",
+    "example_sentence": "This job offers many opportunities for growth.",
+    "chinese_translation": "机会",
+    "pronunciation": "/ˌɒpəˈtjuːnəti/",
+    "proficiency_level": 1
+  }
+]

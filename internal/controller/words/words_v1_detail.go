@@ -2,8 +2,9 @@ package words
 
 import (
 	"context"
-
 	"vocabulary/api/words/v1"
+	"github.com/gogf/gf/v2/errors/gcode"
+	"github.com/gogf/gf/v2/errors/gerror"
 )
 
 func (c *ControllerV1) Detail(ctx context.Context, req *v1.DetailReq) (res *v1.DetailRes, err error) {
@@ -11,19 +12,25 @@ func (c *ControllerV1) Detail(ctx context.Context, req *v1.DetailReq) (res *v1.D
 	if err != nil {
 		return nil, err
 	}
-	v, err := c.words.Detail(ctx, req.Id, uid)
+	word, err := c.words.Detail(ctx, uid, req.Id)
 	if err != nil {
 		return nil, err
 	}
+	
+	// 检查单词是否存在
+	if word == nil {
+		return nil, gerror.NewCode(gcode.CodeNotFound, "单词不存在")
+	}
+	
 	return &v1.DetailRes{
-		Id:                 v.Id,
-		Word:               v.Word,
-		Definition:         v.Definition,
-		ExampleSentence:    v.ExampleSentence,
-		ChineseTranslation: v.ChineseTranslation,
-		Pronunciation:      v.Pronunciation,
-		ProficiencyLevel:   v1.ProficiencyLevel(v.ProficiencyLevel),
-		CreatedAt:          v.CreatedAt,
-		UpdatedAt:          v.UpdatedAt,
+		Id:                 word.Id,
+		Word:               word.Word,
+		Definition:         word.Definition,
+		ExampleSentence:    word.ExampleSentence,
+		ChineseTranslation: word.ChineseTranslation,
+		Pronunciation:      word.Pronunciation,
+		ProficiencyLevel:   v1.ProficiencyLevel(word.ProficiencyLevel),
+		CreatedAt:          word.CreatedAt,
+		UpdatedAt:          word.UpdatedAt,
 	}, nil
 }
