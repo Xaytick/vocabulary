@@ -1,5 +1,3 @@
 package consts
 
-const (
-	JwtKey = "db03d23b03ec405793b38f10592a2f34"
-)
+// JwtKey 已移至配置文件

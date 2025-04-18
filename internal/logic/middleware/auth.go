@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"net/http"
-	"vocabulary/internal/consts"
 
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/golang-jwt/jwt/v5"
 )
@@ -13,8 +13,12 @@ func Auth(r *ghttp.Request) {
 	if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
 		tokenString = tokenString[7:]
 	}
+
+	// 从配置文件获取密钥
+	jwtKey := g.Cfg().MustGet(r.Context(), "server.jwt.secret").String()
+	
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		return []byte(consts.JwtKey), nil
+		return []byte(jwtKey), nil
 	})
 
 	if err != nil || !token.Valid {

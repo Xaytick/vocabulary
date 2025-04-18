@@ -1,10 +1,11 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"time"
-	"vocabulary/internal/consts"
 
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/golang-jwt/jwt/v5"
 )
 
@@ -15,7 +16,7 @@ type jwtClaims struct {
 }
 
 func main() {
-	// 设置你想要的用户信息
+	ctx := context.Background()
 	claims := &jwtClaims{
 		Id:       1, // 用户ID
 		Username: "Wang Xiang", // 用户名
@@ -25,7 +26,8 @@ func main() {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	tokenString, err := token.SignedString([]byte(consts.JwtKey))
+	jwtKey := g.Cfg().MustGet(ctx, "server.jwt.secret").String()
+	tokenString, err := token.SignedString([]byte(jwtKey))
 	if err != nil {
 		fmt.Println("生成token失败:", err)
 		return

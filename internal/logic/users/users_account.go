@@ -3,7 +3,6 @@ package users
 import (
 	"context"
 	"time"
-	"vocabulary/internal/consts"
 	"vocabulary/internal/dao"
 	"vocabulary/internal/model/entity"
 
@@ -47,8 +46,9 @@ func (u *Users) Login(ctx context.Context, in LoginInput) (tokenString string, e
 		},	
 	}
 
+	jwtKey := g.Cfg().MustGet(ctx, "server.jwt.secret").String()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	return token.SignedString([]byte(consts.JwtKey))
+	return token.SignedString([]byte(jwtKey))
 }
 
 func (u *Users) Info(ctx context.Context) (user *entity.Users, err error) {
@@ -56,8 +56,11 @@ func (u *Users) Info(ctx context.Context) (user *entity.Users, err error) {
 	if len(tokenString) > 7 && tokenString[:7] == "Bearer " {
 		tokenString = tokenString[7:]
 	}
+
+	
 	tokenClaims, _ := jwt.ParseWithClaims(tokenString, &jwtClaims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(consts.JwtKey), nil
+		jwtKey := g.Cfg().MustGet(ctx, "server.jwt.secret").String()
+		return []byte(jwtKey), nil
 	})
 	if claims, ok := tokenClaims.Claims.(*jwtClaims); ok && tokenClaims.Valid {
 		err = dao.Users.Ctx(ctx).Where("id", claims.Id).Scan(&user)
